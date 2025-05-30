@@ -22,6 +22,9 @@ import ListHardware from "./pages/ListHardware";
 import CreateHardware from "./pages/CreateHardware";
 import EditHardware from "./pages/EditHardware";
 import { ToastContainer } from 'react-toastify';
+import ListEmpleados from "./pages/ListEmpleados";
+import CreateEmpleado from "./pages/CreateEmpleado";
+import EditEmpleado from "./pages/EditEmpleado";
 import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
@@ -56,6 +59,9 @@ const App = () => {
           <Route path="/hardware" element={<ListHardware />} />
           <Route path="/hardware/create" element={<CreateHardware />} />
           <Route path="/hardware/edit/:id" element={<EditHardware />} />
+          <Route path="/empleados" element={<ListEmpleados />} />
+          <Route path="/empleados/create" element={<CreateEmpleado />} />
+          <Route path="/empleados/edit/:id" element={<EditEmpleado />} />
         </Routes>
       </div>
     <ToastContainer/>
