@@ -11,7 +11,17 @@ const EditPage = () => {
     const [dispositivo, setDispositivo] = useState({
         CodigoDispositivo: "",
         IdDispositivo: "",
+        Importe: "",
+        FechaCompra: "",
+        IdUbicacion: "",
+        IdTipoDisp: "",
+        IdSO: "",
+        IdOffice: "",
+        IdEstado: "",
+        TieneOffice: false,
+        IdHardware: "",
         IdEmpleado: "",
+        Observaciones: "",
         Image: "",
     });
 
@@ -22,7 +32,17 @@ const EditPage = () => {
             setDispositivo({
                 CodigoDispositivo: response.data.CodigoDispositivo,
                 IdDispositivo: response.data.IdDispositivo,
+                Importe: response.data.Importe,
+                FechaCompra: response.data.FechaCompra,
+                IdUbicacion: response.data.IdUbicacion,
+                IdTipoDisp: response.data.IdTipoDisp,
+                IdSO: response.data.IdSO,
+                IdOffice: response.data.IdOffice,
+                IdEstado: response.data.IdEstado,
+                TieneOffice: response.data.TieneOffice,
+                IdHardware: response.data.IdHardware,
                 IdEmpleado: response.data.IdEmpleado,
+                Observaciones: response.data.Observaciones,
                 Image: response.data.Image,
             });
             setIsLoading(false);
@@ -30,7 +50,6 @@ const EditPage = () => {
             setIsLoading(false);
             toast.error(error.message);
         }
-
     };
 
     const updateDispositivo = async (e) => {
@@ -85,6 +104,113 @@ const EditPage = () => {
                             />
                         </div>
                         <div>
+                            <label>Importe</label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                value={dispositivo.Importe}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, Importe: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                                placeholder="Enter Importe"
+                            />
+                        </div>
+                        <div>
+                            <label>FechaCompra</label>
+                            <input
+                                type="date"
+                                value={dispositivo.FechaCompra}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, FechaCompra: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                            />
+                        </div>
+                        <div>
+                            <label>IdUbicacion</label>
+                            <input
+                                type="number"
+                                value={dispositivo.IdUbicacion}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, IdUbicacion: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                                placeholder="Enter IdUbicacion"
+                            />
+                        </div>
+                        <div>
+                            <label>IdTipoDisp</label>
+                            <input
+                                type="number"
+                                value={dispositivo.IdTipoDisp}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, IdTipoDisp: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                                placeholder="Enter IdTipoDisp"
+                            />
+                        </div>
+                        <div>
+                            <label>IdSO</label>
+                            <input
+                                type="number"
+                                value={dispositivo.IdSO}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, IdSO: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                                placeholder="Enter IdSO"
+                            />
+                        </div>
+                        <div>
+                            <label>IdOffice</label>
+                            <input
+                                type="number"
+                                value={dispositivo.IdOffice}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, IdOffice: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                                placeholder="Enter IdOffice"
+                            />
+                        </div>
+                        <div>
+                            <label>IdEstado</label>
+                            <input
+                                type="number"
+                                value={dispositivo.IdEstado}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, IdEstado: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                                placeholder="Enter IdEstado"
+                            />
+                        </div>
+                        <div className="flex items-center">
+                            <input
+                                type="checkbox"
+                                checked={dispositivo.TieneOffice}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, TieneOffice: e.target.checked })
+                                }
+                                className="mr-2"
+                            />
+                            <label>TieneOffice</label>
+                        </div>
+                        <div>
+                            <label>IdHardware</label>
+                            <input
+                                type="number"
+                                value={dispositivo.IdHardware}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, IdHardware: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                                placeholder="Enter IdHardware"
+                            />
+                        </div>
+                        <div>
                             <label>IdEmpleado</label>
                             <input
                                 type="number"
@@ -95,6 +221,17 @@ const EditPage = () => {
                                 className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
                                 placeholder="Enter IdEmpleado"
                             />
+                        </div>
+                        <div>
+                            <label>Observaciones</label>
+                            <textarea
+                                value={dispositivo.Observaciones}
+                                onChange={(e) =>
+                                    setDispositivo({ ...dispositivo, Observaciones: e.target.value })
+                                }
+                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
+                                placeholder="Enter Observaciones"
+                            ></textarea>
                         </div>
                         <div>
                             <label>Image URL</label>
