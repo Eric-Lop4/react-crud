@@ -25,6 +25,7 @@ const EditPage = () => {
         Image: "",
     });
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const getDispositivo = async () => {
         setIsLoading(true);
         try {
@@ -67,7 +68,7 @@ const EditPage = () => {
 
     useEffect(() => {
         getDispositivo();
-    }, []);
+    }, [getDispositivo]);
 
     return (
         <div className="max-w-lg bg-white shadow-lg mx-auto p-7 rounded mt-6">
@@ -232,18 +233,6 @@ const EditPage = () => {
                                 className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
                                 placeholder="Enter Observaciones"
                             ></textarea>
-                        </div>
-                        <div>
-                            <label>Image URL</label>
-                            <input
-                                type="text"
-                                value={dispositivo.Image}
-                                onChange={(e) =>
-                                    setDispositivo({ ...dispositivo, Image: e.target.value })
-                                }
-                                className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400"
-                                placeholder="Enter Image URL"
-                            />
                         </div>
                         <div>
                             <button

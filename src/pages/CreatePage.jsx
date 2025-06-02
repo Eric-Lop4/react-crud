@@ -17,7 +17,6 @@ const CreatePage = () => {
     const [IdHardware, setIdHardware] = useState("");
     const [IdEmpleado, setIdEmpleado] = useState("");
     const [Observaciones, setObservaciones] = useState("");
-    const [Image, setImage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -43,7 +42,6 @@ const CreatePage = () => {
                 IdHardware: IdHardware,
                 IdEmpleado: IdEmpleado,
                 Observaciones: Observaciones,
-                Image: Image
             });
             toast.success(`Save ${response.data.name} sucessfully`);
             setIsLoading(false);
@@ -112,10 +110,6 @@ const CreatePage = () => {
                     <div>
                         <label>Observaciones</label>
                         <textarea value={Observaciones} onChange={(e) => setObservaciones(e.target.value)} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Observaciones"></textarea>
-                    </div>
-                    <div>
-                        <label>Image URL</label>
-                        <input type="text" value={Image} onChange={(e) => setImage(e.target.value)} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Image URL" />
                     </div>
                     <div>
                         { !isLoading && (<button className="block w-full mt-6 bg-blue-700 text-white rounded-sm px-4 py-2 font-bold hover:bg-blue-600 hover:cursor-pointer">Save</button>)} 

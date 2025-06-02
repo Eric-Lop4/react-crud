@@ -28,7 +28,6 @@ const Dispositivo = ({ dispositivo, getProducts }) => {
 
   return (
     <div className="bg-white rounded shadow-lg overflow-hidden">
-      <img src={dispositivo.image} className="w-full h-28 object-cover" />
       <div className="px-4 pt-2 pb-4">
         <h2 className="text font-semibold">{dispositivo.CodigoDispositivo}</h2>
         <div className="text-sm">IdDispositivo: {dispositivo.IdDispositivo}</div>

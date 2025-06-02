@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CreatePage from "./pages/CreatePage";
@@ -21,16 +21,29 @@ import EditEstado from "./pages/EditEstado";
 import ListHardware from "./pages/ListHardware";
 import CreateHardware from "./pages/CreateHardware";
 import EditHardware from "./pages/EditHardware";
-import { ToastContainer } from 'react-toastify';
 import ListEmpleados from "./pages/ListEmpleados";
 import CreateEmpleado from "./pages/CreateEmpleado";
 import EditEmpleado from "./pages/EditEmpleado";
 import ListAsignaciones from "./pages/ListAsignaciones";
 import CreateAsignacion from "./pages/CreateAsignacion";
 import EditAsignacion from "./pages/EditAsignacion";
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLinks = [
+    { to: "/ubicaciones", label: "Ubicaciones" },
+    { to: "/tipos", label: "Tipos" },
+    { to: "/sistemas", label: "S.O" },
+    { to: "/office", label: "Office" },
+    { to: "/estado", label: "Estado" },
+    { to: "/hardware", label: "Hardware" },
+    { to: "/empleados", label: "Empleados" },
+    { to: "/asignaciones", label: "Asignaciones" },
+  ];
+
   return (
     <div className="min-h-screen">
       <nav className="bg-gray-800 py-3">
@@ -39,58 +52,47 @@ const App = () => {
             <Link to="/" className="mr-4">
               <h2 className="text-white text-2xl font-bold">Dispositivos Plasfesa</h2>
             </Link>
-            
-            <div className="flex flex-wrap gap-2">
-              <Link
-                to="/ubicaciones"
-                className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
-              >
-                Ubicaciones
-              </Link>
-              <Link
-                to="/tipos"
-                className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
-              >
-                Tipos
-              </Link>
-              <Link
-                to="/sistemas"
-                className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
-              >
-                S.O
-              </Link>
-              <Link
-                to="/office"
-                className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
-              >
-                Office
-              </Link>
-              <Link
-                to="/estado"
-                className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
-              >
-                Estado
-              </Link>
-              <Link
-                to="/hardware"
-                className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
-              >
-                Hardware
-              </Link>
-              <Link
-                to="/empleados"
-                className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
-              >
-                Empleados
-              </Link>
-              <Link
-                to="/asignaciones"
-                className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
-              >
-                Asignaciones
-              </Link>
+
+            <div className="sm:hidden md:flex flex-wrap gap-2">
+              {navLinks.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="shadow-md bg-green-700 text-white rounded px-3 py-1 text-sm font-bold hover:bg-green-600 transition-colors"
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden text-white"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {isOpen && (
+            <div className="flex flex-col gap-2 mt-3 s:hidden">
+              {navLinks.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  onClick={() => setIsOpen(false)}
+                  className="shadow-md bg-green-700 text-white rounded px-3 py-2 text-sm font-bold hover:bg-green-600 transition-colors"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </nav>
 
@@ -125,6 +127,7 @@ const App = () => {
           <Route path="/asignaciones/edit/:idDispositivo/:idEmpleado" element={<EditAsignacion />} />
         </Routes>
       </div>
+
       <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
