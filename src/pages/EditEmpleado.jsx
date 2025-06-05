@@ -62,6 +62,13 @@ const EditEmpleado = () => {
         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
           Actualizar
         </button>
+        <button
+          type="button"
+          onClick={() => navigate(-1)} // Regresa a la página anterior
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded ml-4"
+        >
+          Regresar
+        </button>
       </form>
     </div>
   );

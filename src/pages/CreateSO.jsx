@@ -62,6 +62,13 @@ const CreateSO = () => {
         >
           {loading ? "Guardando..." : "Guardar"}
         </button>
+        <button
+          type="button"
+          onClick={() => navigate(-1)} // Regresa a la página anterior
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded ml-5"
+        >
+          Regresar
+        </button>
       </form>
     </div>
   );

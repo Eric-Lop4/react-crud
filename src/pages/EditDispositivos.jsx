@@ -14,7 +14,7 @@ const EditDispositivo = () => {
       try {
         const res = await axios.get(`http://localhost:3000/tipos/${id}`);
         setValorTipo(res.data.ValorTipo);
-      // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
       } catch (error) {
         toast.error("Error al cargar tipo");
       }
@@ -57,6 +57,13 @@ const EditDispositivo = () => {
           className="bg-blue-600 text-white px-4 py-2 rounded"
         >
           {loading ? "Actualizando..." : "Actualizar"}
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate(-1)} // Regresa a la página anterior
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded ml-4"
+        >
+          Regresar
         </button>
       </form>
     </div>

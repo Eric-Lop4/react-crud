@@ -30,7 +30,6 @@ const Dispositivo = ({ dispositivo, getProducts }) => {
     <div className="bg-white rounded shadow-lg overflow-hidden">
       <div className="px-4 pt-2 pb-4">
         <h2 className="text font-semibold">{dispositivo.CodigoDispositivo}</h2>
-        <div className="text-sm">IdDispositivo: {dispositivo.IdDispositivo}</div>
         <div className="text-sm">Importe: {dispositivo.Importe}</div>
         <div className="text-sm">FechaCompra: {dispositivo.FechaCompra}</div>
         <div className="text-sm">IdUbicacion: {dispositivo.IdUbicacion}</div>
@@ -40,19 +39,18 @@ const Dispositivo = ({ dispositivo, getProducts }) => {
         <div className="text-sm">IdEstado: {dispositivo.IdEstado}</div>
         <div className="text-sm">TieneOffice: {dispositivo.TieneOffice ? "Yes" : "No"}</div>
         <div className="text-sm">IdHardware: {dispositivo.IdHardware}</div>
-        <div className="text-sm">IdEmpleado: {dispositivo.IdEmpleado}</div>
         <div className="text-sm">Observaciones: {dispositivo.Observaciones}</div>
 
         <div className="mt-2 flex gap-4">
           <Link
             to={`/edit/${dispositivo.IdDispositivo}`}
-            className="inline-block w-full text-center shadow-mg text-sm bg-gray-700 text-white rounded-sm px-4 py-1 font-bold hover:bg-gray-600 hover:cursor-pointer"
+            className="inline-block w-full text-center shadow-md text-sm bg-gray-700 text-white rounded-sm px-4 py-1 font-bold hover:bg-gray-600 hover:cursor-pointer"
           >
             Edit
           </Link>
           <button
             onClick={() => deleteProduct(dispositivo.IdDispositivo)}
-            className="inline-block w-full text-center shadow-mg text-sm bg-red-700 text-white rounded-sm px-4 py-1 font-bold hover:bg-red-600 hover:cursor-pointer"
+            className="inline-block w-full text-center shadow-md text-sm bg-red-700 text-white rounded-sm px-4 py-1 font-bold hover:bg-red-600 hover:cursor-pointer"
           >
             Delete
           </button>

@@ -22,7 +22,7 @@ const CreateEmpleado = () => {
       });
       toast.success("Empleado creado");
       navigate("/empleados");
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       toast.error("Error al crear empleado");
     }
@@ -54,6 +54,13 @@ const CreateEmpleado = () => {
         </div>
         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
           Guardar
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate(-1)} // Regresa a la página anterior
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded ml-5"
+        >
+          Regresar
         </button>
       </form>
     </div>

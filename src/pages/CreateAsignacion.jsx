@@ -35,6 +35,13 @@ const CreateAsignacion = () => {
         <input type="date" name="FechaAsignacion" onChange={handleChange} required className="border p-2 w-full" />
         <input type="text" name="Observaciones" placeholder="Observaciones" onChange={handleChange} className="border p-2 w-full" />
         <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">Guardar</button>
+        <button
+          type="button"
+          onClick={() => navigate(-1)} // Regresa a la página anterior
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded ml-5"
+        >
+          Regresar
+        </button>
       </form>
     </div>
   );
