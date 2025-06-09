@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
@@ -28,45 +28,98 @@ import EditEmpleado from "./pages/EditEmpleado";
 import ListAsignaciones from "./pages/ListAsignaciones";
 import CreateAsignacion from "./pages/CreateAsignacion";
 import EditAsignacion from "./pages/EditAsignacion";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import LoginPage from "./pages/LoginPage";
+import PrivateRoute from "./components/PrivateRoute";
+import ListDispositivosVista from "./pages/ListDispositivosVista";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    setIsLoggedIn(loggedIn);
+  }, []);
+
+  if (isLoggedIn === null) return null;
+
   return (
     <div className="min-h-screen">
-      <Navbar />
+      {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
 
       <div className="container mx-auto p-4">
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/create" element={<CreatePage />} />
-          <Route path="/edit/:id" element={<EditPage />} />
-          <Route path="/ubicaciones" element={<ListUbicaciones />} />
-          <Route path="/ubicaciones/create" element={<CreateUbicacion />} />
-          <Route path="/ubicaciones/edit/:id" element={<EditUbicacion />} />
-          <Route path="/tipos" element={<ListDispositivos />} />
-          <Route path="/tipos/create" element={<CreateDispositivos />} />
-          <Route path="/tipos/edit/:id" element={<EditDispositivos />} />
-          <Route path="/sistemas" element={<ListSO />} />
-          <Route path="/sistemas/create" element={<CreateSO />} />
-          <Route path="/sistemas/edit/:id" element={<EditSO />} />
-          <Route path="/office" element={<ListOffice />} />
-          <Route path="/office/create" element={<CreateOffice />} />
-          <Route path="/office/edit/:id" element={<EditOffice />} />
-          <Route path="/estado" element={<ListEstado />} />
-          <Route path="/estado/create" element={<CreateEstado />} />
-          <Route path="/estado/edit/:id" element={<EditEstado />} />
-          <Route path="/hardware" element={<ListHardware />} />
-          <Route path="/hardware/create" element={<CreateHardware />} />
-          <Route path="/hardware/edit/:id" element={<EditHardware />} />
-          <Route path="/empleados" element={<ListEmpleados />} />
-          <Route path="/empleados/create" element={<CreateEmpleado />} />
-          <Route path="/empleados/edit/:id" element={<EditEmpleado />} />
-          <Route path="/asignaciones" element={<ListAsignaciones />} />
-          <Route path="/asignaciones/create" element={<CreateAsignacion />} />
-          <Route path="/asignaciones/edit/:idDispositivo/:idEmpleado" element={<EditAsignacion />} />
+          <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+
+          <Route
+            path="/"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <CreatePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/edit/:id"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <EditPage />
+              </PrivateRoute>
+            }
+          />
+          
+          <Route
+            path="/dispositivos"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <ListDispositivosVista />
+              </PrivateRoute>
+            }
+          />
+
+          <Route path="/ubicaciones" element={<PrivateRoute isLoggedIn={isLoggedIn}><ListUbicaciones /></PrivateRoute>} />
+          <Route path="/ubicaciones/create" element={<PrivateRoute isLoggedIn={isLoggedIn}><CreateUbicacion /></PrivateRoute>} />
+          <Route path="/ubicaciones/edit/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditUbicacion /></PrivateRoute>} />
+
+          <Route path="/tipos" element={<PrivateRoute isLoggedIn={isLoggedIn}><ListDispositivos /></PrivateRoute>} />
+          <Route path="/tipos/create" element={<PrivateRoute isLoggedIn={isLoggedIn}><CreateDispositivos /></PrivateRoute>} />
+          <Route path="/tipos/edit/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditDispositivos /></PrivateRoute>} />
+
+          <Route path="/sistemas" element={<PrivateRoute isLoggedIn={isLoggedIn}><ListSO /></PrivateRoute>} />
+          <Route path="/sistemas/create" element={<PrivateRoute isLoggedIn={isLoggedIn}><CreateSO /></PrivateRoute>} />
+          <Route path="/sistemas/edit/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditSO /></PrivateRoute>} />
+
+          <Route path="/office" element={<PrivateRoute isLoggedIn={isLoggedIn}><ListOffice /></PrivateRoute>} />
+          <Route path="/office/create" element={<PrivateRoute isLoggedIn={isLoggedIn}><CreateOffice /></PrivateRoute>} />
+          <Route path="/office/edit/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditOffice /></PrivateRoute>} />
+
+          <Route path="/estado" element={<PrivateRoute isLoggedIn={isLoggedIn}><ListEstado /></PrivateRoute>} />
+          <Route path="/estado/create" element={<PrivateRoute isLoggedIn={isLoggedIn}><CreateEstado /></PrivateRoute>} />
+          <Route path="/estado/edit/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditEstado /></PrivateRoute>} />
+
+          <Route path="/hardware" element={<PrivateRoute isLoggedIn={isLoggedIn}><ListHardware /></PrivateRoute>} />
+          <Route path="/hardware/create" element={<PrivateRoute isLoggedIn={isLoggedIn}><CreateHardware /></PrivateRoute>} />
+          <Route path="/hardware/edit/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditHardware /></PrivateRoute>} />
+
+          <Route path="/empleados" element={<PrivateRoute isLoggedIn={isLoggedIn}><ListEmpleados /></PrivateRoute>} />
+          <Route path="/empleados/create" element={<PrivateRoute isLoggedIn={isLoggedIn}><CreateEmpleado /></PrivateRoute>} />
+          <Route path="/empleados/edit/:id" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditEmpleado /></PrivateRoute>} />
+
+          <Route path="/asignaciones" element={<PrivateRoute isLoggedIn={isLoggedIn}><ListAsignaciones /></PrivateRoute>} />
+          <Route path="/asignaciones/create" element={<PrivateRoute isLoggedIn={isLoggedIn}><CreateAsignacion /></PrivateRoute>} />
+          <Route path="/asignaciones/edit/:idDispositivo/:idEmpleado" element={<PrivateRoute isLoggedIn={isLoggedIn}><EditAsignacion /></PrivateRoute>} />
         </Routes>
       </div>
+
       <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
